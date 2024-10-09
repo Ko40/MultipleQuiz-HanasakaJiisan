@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz: Hanasaka Jiisan</title>
+    <style>
+        .correct-answer {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ikkyu Quiz</h1>
+
+    <form id="quizForm">
+        <!-- Frage 1 -->
+        <h3>Frage 1: Warum gräbt der Hund im Garten?</h3>
+        <label><input type="radio" name="q1" value="A"> A) Er sucht nach Futter.</label><br>
+        <label><input type="radio" name="q1" value="B"> B) Er versteckt sein Spielzeug.</label><br>
+        <label><input type="radio" name="q1" value="C"> C) Er findet zufällig Gold.</label><br>
+        <label><input type="radio" name="q1" value="D"> D) Er sucht nach Wasser.</label><br>
+        <label><input type="radio" name="q1" value="E"> E) Er möchte die Nachbarn ärgern.</label><br>
+        <p id="q1-correct" class="correct-answer"></p>
+
+        <!-- Frage 2 -->
+        <h3>Frage 2: Was passiert, als der böse Nachbar den Hund ausleiht?</h3>
+        <label><input type="radio" name="q2" value="A"> A) Der Hund findet Gold im Garten des Nachbarn.</label><br>
+        <label><input type="radio" name="q2" value="B"> B) Der Hund gräbt ein großes Loch und zerstört den Garten.</label><br>
+        <label><input type="radio" name="q2" value="C"> C) Der Hund läuft davon.</label><br>
+        <label><input type="radio" name="q2" value="D"> D) Der Hund findet nichts im Garten des Nachbarn.</label><br>
+        <label><input type="radio" name="q2" value="E"> E) Der Hund bringt dem Nachbarn Glück.</label><br>
+        <p id="q2-correct" class="correct-answer"></p>
+
+        <!-- Frage 3 -->
+        <h3>Frage 3: Was träumt der alte Mann, nachdem der Hund zurückgekehrt ist?</h3>
+        <label><input type="radio" name="q3" value="A"> A) Der Hund sagt ihm, er solle einen Baum pflanzen.</label><br>
+        <label><input type="radio" name="q3" value="B"> B) Der Hund sagt ihm, er solle einen Baum fällen und eine Mörser daraus machen.</label><br>
+        <label><input type="radio" name="q3" value="C"> C) Der Hund sagt ihm, er solle die Nachbarn verjagen.</label><br>
+        <label><input type="radio" name="q3" value="D"> D) Der Hund sagt ihm, er solle den Garten neu bepflanzen.</label><br>
+        <label><input type="radio" name="q3" value="E"> E) Der Hund sagt ihm, er solle die Mörser verbrennen.</label><br>
+        <p id="q3-correct" class="correct-answer"></p>
+
+        <!-- Frage 4 -->
+        <h3>Frage 4: Was geschieht, als der alte Mann den Reis in der Mörser stampft?</h3>
+        <label><input type="radio" name="q4" value="A"> A) Der Reis wird zu Staub.</label><br>
+        <label><input type="radio" name="q4" value="B"> B) Der Reis verschwindet.</label><br>
+        <label><input type="radio" name="q4" value="C"> C) Der Reis wird zu Gold.</label><br>
+        <label><input type="radio" name="q4" value="D"> D) Der Reis wird zu Brot.</label><br>
+        <label><input type="radio" name="q4" value="E"> E) Der Reis wird zu Wasser.</label><br>
+        <p id="q4-correct" class="correct-answer"></p>
+
+        <!-- Frage 5 -->
+        <h3>Frage 5: Wie reagiert der König, als er von den blühenden Bäumen erfährt?</h3>
+        <label><input type="radio" name="q5" value="A"> A) Er ignoriert es.</label><br>
+        <label><input type="radio" name="q5" value="B"> B) Er befiehlt, dass der Baum gefällt wird.</label><br>
+        <label><input type="radio" name="q5" value="C"> C) Er lädt den alten Mann zu sich ein und belohnt ihn.</label><br>
+        <label><input type="radio" name="q5" value="D"> D) Er verbannt den alten Mann.</label><br>
+        <label><input type="radio" name="q5" value="E"> E) Er verbietet dem Mann, weiter Gold zu finden.</label><br>
+        <p id="q5-correct" class="correct-answer"></p>
+
+        <br>
+        <input type="button" value="Ergebnisse anzeigen" onclick="calculateScore()">
+    </form>
+
+    <h2 id="score"></h2>
+
+    <script>
+        function calculateScore() {
+            // Richtige Antworten
+            const correctAnswers = {
+                q1: 'C',
+                q2: 'D',
+                q3: 'B',
+                q4: 'C',
+                q5: 'C'
+            };
+
+            let score = 0;
+            const form = document.forms['quizForm'];
+
+            // Durch alle Fragen iterieren
+            for (let question in correctAnswers) {
+                const userAnswer = form[question].value;
+                const correctAnswer = correctAnswers[question];
+
+                // Richtig oder falsch überprüfen und Punkt hinzufügen
+                if (userAnswer === correctAnswer) {
+                    score++;
+                }
+
+                // Richtige Antwort anzeigen
+                document.getElementById(`${question}-correct`).innerText = `Die richtige Antwort ist: ${correctAnswer}`;
+            }
+
+            // Score anzeigen
+            document.getElementById('score').innerText = `Dein Ergebnis: ${score}/5`;
+        }
+    </script>
+</body>
+</html>
